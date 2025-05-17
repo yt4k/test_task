@@ -1,0 +1,12 @@
+<li class="menu-item{% if node.is_active %} active{% endif %}">
+    <a href="{{ node.item.url }}">{{ node.item.title }}</a>
+    {% if node.children and node.is_active %}
+        <ul class="submenu">
+            {% for child in node.children %}
+                {% with node=child template_name="menu/menu_node.html" %}
+                    {% include template_name %}
+                {% endwith %}
+            {% endfor %}
+        </ul>
+    {% endif %}
+</li>
